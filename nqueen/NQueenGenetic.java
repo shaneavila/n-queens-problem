@@ -1,9 +1,25 @@
 package nqueen;
 
+import java.util.Random;
+
 public class NQueenGenetic extends NQueen {
+
+    private static final int SIZE = 8;
+    private static final Random RANDOM = new Random(SIZE);
 
     public NQueenGenetic() {
         score = genScore();
+    }
+
+    public NQueenGenetic(int[] temp) {
+        state = temp;
+        score = genNonAttackScore();
+    }
+
+    void genState() {
+        state = new int[SIZE];
+        for (int i = 0; i < state.length; i++)
+            state[i] = RANDOM.nextInt(SIZE);
     }
 
     int genScore() {
@@ -24,8 +40,8 @@ public class NQueenGenetic extends NQueen {
     }
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(NQueen o) {
         //TODO this is the opposite of shotgun as a test
-        return (score < ((NQueen)o).score) ? 1 : (score > ((NQueen)o).score) ? -1 : 0;
+        return (score < o.score) ? 1 : (score > o.score) ? -1 : 0;
     }
 }

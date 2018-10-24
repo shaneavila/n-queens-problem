@@ -1,6 +1,11 @@
 package nqueen;
 
+import java.util.Random;
+
 public class NQueenShotgun extends NQueen {
+
+    private static final int SIZE = 8;
+    private static final Random RANDOM = new Random(SIZE);
 
     public NQueenShotgun() {
         score = genScore();
@@ -9,6 +14,12 @@ public class NQueenShotgun extends NQueen {
     public NQueenShotgun(int[] temp) {
         state = temp;
         score = genAttackScore();
+    }
+
+    void genState() {
+        state = new int[SIZE];
+        for (int i = 0; i < state.length; i++)
+            state[i] = RANDOM.nextInt(SIZE);
     }
 
     int genScore() {
@@ -29,8 +40,8 @@ public class NQueenShotgun extends NQueen {
     }
 
     @Override
-    public int compareTo(Object o) {
-        return (score < ((NQueen)o).score) ? -1 : (score > ((NQueen)o).score) ? 1 : 0;
+    public int compareTo(NQueen o) {
+        return (score < o.score) ? -1 : (score > o.score) ? 1 : 0;
     }
 
 }

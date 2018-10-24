@@ -10,12 +10,7 @@ public class ShotgunHillClimb {
 
     private NQueenShotgun instance;
     private List<NQueenShotgun> nextStates;
-    private static final int RESTART_LIMIT;
-
-    static
-    {
-        RESTART_LIMIT = 1000;
-    }
+    private static final int RESTART_LIMIT = 1000;
 
     public ShotgunHillClimb(NQueenShotgun instance) {
         this.instance = instance;
@@ -26,9 +21,9 @@ public class ShotgunHillClimb {
         NQueenShotgun current = instance;
         int limit = 0;
         do {
-            NQueenShotgun nextState = exploreStateSpace(current.getState()).get(0);
-            if (nextState.getScore() < current.getScore()) {
-                current = nextState;
+            NQueenShotgun neighbor = exploreStateSpace(current.getState()).get(0);
+            if (neighbor.getScore() < current.getScore()) {
+                current = neighbor;
                 best = current;
             }
             else {

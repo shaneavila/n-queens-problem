@@ -2,28 +2,13 @@ package nqueen;
 
 import java.util.*;
 
-abstract class NQueen implements Comparable{
+abstract class NQueen implements Comparable<NQueen>{
 
     int[] state;
     int   score;
 
-    private static final int SIZE;
-    private static final Random RANDOM;
-
-    static
-    {
-        SIZE = 8;
-        RANDOM = new Random(SIZE);
-    }
-
     public NQueen() {
         genState();
-    }
-
-    public void genState() {
-        state = new int[SIZE];
-        for (int i = 0; i < state.length; i++)
-            state[i] = RANDOM.nextInt(SIZE);
     }
 
     public int[] getState() { return state; }
@@ -32,8 +17,10 @@ abstract class NQueen implements Comparable{
 
     @Override
     public String toString() {
-        return "\n"+Arrays.toString(state) + " Score: " + score;
+        return Arrays.toString(state) + " Score: " + score;
     }
+
+    abstract void genState();
 
     abstract int genScore();
 }
