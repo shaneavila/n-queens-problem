@@ -13,7 +13,7 @@ public class NQueenShotgun extends NQueen {
 
     public NQueenShotgun(int[] temp) {
         state = temp;
-        score = genAttackScore();
+        score = genScore();
     }
 
     void genState() {
@@ -23,10 +23,6 @@ public class NQueenShotgun extends NQueen {
     }
 
     int genScore() {
-        return genAttackScore();
-    }
-
-    public int genAttackScore() {
         return super.genAttackScore();
     }
 

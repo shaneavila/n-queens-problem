@@ -1,6 +1,5 @@
 package nqueen;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class NQueenGenetic extends NQueen {
@@ -25,10 +24,6 @@ public class NQueenGenetic extends NQueen {
     }
 
     int genScore() {
-        return genNonAttackScore();
-    }
-
-    private int genNonAttackScore() {
         return goalScore - super.genAttackScore();
     }
 
