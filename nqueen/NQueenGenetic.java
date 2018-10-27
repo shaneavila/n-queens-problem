@@ -1,10 +1,12 @@
 package nqueen;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class NQueenGenetic extends NQueen {
 
     private static final int SIZE = 8;
+    private static final int goalScore = goalScore();
     private static final Random RANDOM = new Random(SIZE);
 
     public NQueenGenetic() {
@@ -13,7 +15,7 @@ public class NQueenGenetic extends NQueen {
 
     public NQueenGenetic(int[] temp) {
         state = temp;
-        score = genNonAttackScore();
+        score = genScore();
     }
 
     void genState() {
@@ -27,21 +29,19 @@ public class NQueenGenetic extends NQueen {
     }
 
     private int genNonAttackScore() {
-        score = 0;
-        for (int i = 0; i < state.length; i++) {
-            for (int j = i+1; j < state.length; j++) {
-                if (state[i] != state[j])
-                    score++;
-                if (Math.abs(state[i] - state[j]) == Math.abs(i - j))
-                    score++;
-            }
-        }
+        return goalScore - super.genAttackScore();
+    }
+
+    private static int goalScore() {
+        int score = 0;
+        for (int i = 0; i < SIZE; i++)
+            score += i;
         return score;
     }
 
     @Override
     public int compareTo(NQueen o) {
-        //TODO this is the opposite of shotgun as a test
+        //Score sorted in descending order
         return (score < o.score) ? 1 : (score > o.score) ? -1 : 0;
     }
 }

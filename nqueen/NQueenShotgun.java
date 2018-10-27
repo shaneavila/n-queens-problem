@@ -26,21 +26,13 @@ public class NQueenShotgun extends NQueen {
         return genAttackScore();
     }
 
-    private int genAttackScore() {
-        score = 0;
-        for (int i = 0; i < state.length; i++) {
-            for (int j = i+1; j < state.length; j++) {
-                if (state[i] == state[j])
-                    score++;
-                if (Math.abs(state[i] - state[j]) == Math.abs(i - j))
-                    score++;
-            }
-        }
-        return score;
+    public int genAttackScore() {
+        return super.genAttackScore();
     }
 
     @Override
     public int compareTo(NQueen o) {
+        //Score sorted in ascending order
         return (score < o.score) ? -1 : (score > o.score) ? 1 : 0;
     }
 

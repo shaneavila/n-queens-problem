@@ -13,8 +13,8 @@ public class Main {
         System.out.println(shotgunSol);
 
         NQueenGenetic geneticInit = new NQueenGenetic();
-        GeneticAlg genAlg = new GeneticAlg(geneticInit);
+        GeneticAlg genAlg = new GeneticAlg();
         NQueenGenetic geneticSol = genAlg.search();
-        System.out.println(geneticSol);
+        //System.out.println(geneticSol);
     }
 }
