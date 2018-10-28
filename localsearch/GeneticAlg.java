@@ -2,59 +2,69 @@ package localsearch;
 
 import nqueen.NQueenGenetic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+
+import static java.lang.Math.min;
 
 public class GeneticAlg {
 
-    //private NQueenGenetic instance;
-    private List<NQueenGenetic> newPopulation;
-    private static final int INIT_POPULATION_SIZE = 1000;
-    private static final int MUTATION_CHANCE = 1000;
-    private static final Random RANDOM = new Random(INIT_POPULATION_SIZE);
+    private static final int MUTATION_CHANCE = 500;        // 1 in N chance of occurring
+    private static final int POPULATION_SIZE = 1000;
+    private static final Random RANDOM = new Random(POPULATION_SIZE);
+    private List<NQueenGenetic> population;
 
-    public GeneticAlg(NQueenGenetic instance) {
-        //this.instance = instance;
+    public GeneticAlg() {
+        population = initialPopulation();
+    }
+
+    private List<NQueenGenetic> initialPopulation() {
+        population = new ArrayList<>();
+        for (int i = 0; i < POPULATION_SIZE; i++)
+            population.add(new NQueenGenetic());
+        Collections.sort(population);
+        return population;
     }
 
     public NQueenGenetic search() {
-
-        while(true) {
+        int count = 0;
+        List<NQueenGenetic> newPopulation;
+        while(!isGoal() && count < 80000) {
             newPopulation = new ArrayList<>();
-            for (int i = 0; i < INIT_POPULATION_SIZE; i++) {
-                NQueenGenetic x = new NQueenGenetic();
-                NQueenGenetic y = new NQueenGenetic();
-                NQueenGenetic child = new NQueenGenetic(reproduce(x,y));
-                boolean chance = RANDOM.nextInt(MUTATION_CHANCE)==0;
+            for (int i = 0; i < POPULATION_SIZE; i++) {
+//                System.out.println(population.size()+i);
+                NQueenGenetic x = population.get(min(RANDOM.nextInt(POPULATION_SIZE), RANDOM.nextInt(POPULATION_SIZE)));
+                NQueenGenetic y = population.get(min(RANDOM.nextInt(POPULATION_SIZE), RANDOM.nextInt(POPULATION_SIZE)));
+                NQueenGenetic child = new NQueenGenetic(reproduce(x, y));
+                boolean chance = RANDOM.nextInt(MUTATION_CHANCE) == 0;
                 if (chance)
-                  child = new NQueenGenetic(mutate(child));
+                    child = new NQueenGenetic(mutate(child));
                 newPopulation.add(child);
+                count++;
+                if (child.getScore() == NQueenGenetic.goalScore())
+                    break;
             }
-            return null;
+            population.addAll(newPopulation);
+            Collections.sort(population);
         }
+        return population.get(0);
+    }
+
+    private boolean isGoal() {
+        return population.get(0).getScore() == NQueenGenetic.goalScore();
     }
 
     private int[] reproduce(NQueenGenetic x, NQueenGenetic y) {
-        System.out.println();
-        int t = RANDOM.nextInt(x.getState().length);
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(t);
-        System.arraycopy(y.getState(),t, x.getState(), t ,x.getState().length-t);
-        System.out.println(x);
-        System.out.println(y);
-        return x.getState();
+        int [] child = new int[x.getState().length];
+        int randPosition = RANDOM.nextInt(child.length);
+        System.arraycopy(x.getState(),0, child, 0, child.length);
+        System.arraycopy(y.getState(),randPosition, child, randPosition ,child.length-randPosition);
+        return child;
     }
 
     private int[] mutate(NQueenGenetic child) {
-        System.out.println();
-        System.out.println("MUTATION");
-        int length = child.getState().length;
-        System.out.println(child);
-        child.getState()[RANDOM.nextInt(length)] = RANDOM.nextInt(length);
-        System.out.println(child);
-        return child.getState();
+        int [] mutation = new int[child.getState().length];
+        System.arraycopy(child.getState(), 0, mutation, 0, mutation.length);
+        mutation[RANDOM.nextInt(mutation.length)] = RANDOM.nextInt(mutation.length);
+        return mutation;
     }
 }
