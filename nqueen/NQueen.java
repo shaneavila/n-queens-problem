@@ -36,4 +36,5 @@ abstract class NQueen implements Comparable<NQueen>{
     abstract void genState();
 
     abstract int genScore();
+
 }
