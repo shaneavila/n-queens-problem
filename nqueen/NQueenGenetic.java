@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class NQueenGenetic extends NQueen implements Comparator<NQueenGenetic> {
 
-    private static final int SIZE = 10;
+    private static final int SIZE = 8;
     private static final int goalScore = goalScore();
     private static final Random RANDOM = new Random(SIZE);
 
