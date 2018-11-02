@@ -11,6 +11,12 @@ Implementation
 - [Shotgun Hill Climbing](https://en.wikipedia.org/wiki/Hill_climbing#Variants "Random-Restart Hill Climbing")
 - [Genetic Algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm "Genetic Algorithm")
 
+Usage
+---
+Place all packages in a directory then ```cd``` into the directory and run:<br> 
+```javac main/*.java localsearch/*.java nqueen/*.java``` then ```java main.Main```
+
+
 Shotgun Hill Climbing
 ---
 Also known as Random-Restart Hill Climbing, Shotgun Hill Climbing is complete. Given a random instance it will explore the state space around the instance in search for the best state based on the heuristic value. The heuristic is the number of attacking queens with a goal score of 0.<br> 
@@ -43,7 +49,7 @@ Genetic Algorithm
 
 Genetic Algorithm searches the state space in a more abstract way. The algorithm is based on evolutionary biology. Given a population of randomly generated states of a certain size, two parents from that population will be selected by their fitness and produce a child by crossing over. The child's fitness value determines the likelihood of the child being useful for generating more fit offspring for the population. There is a certain chance the child will mutate which selects an element and swaps it to a random value in hopes of adding genetic diversity. Then the child is added into the population. If at any point the child has the desired fitness score, the solution will then be returned.
 
-The algorithm generates a population of random states which are sorted according to fitness. Fitness is a score assigned to each state that helps guide the algorithm to a goal state. In this case ```fitness = Non-Attacking Queens```. Those with higher fitness are towards the start of the list. Using ```min(RANDOM.nextInt(POPULATION_SIZE), RANDOM.nextInt(POPULATION_SIZE))``` guarantees that there is a negative sloping distribution meaning those elements at the start of the list, who have better fitness, have a better chance of being chosen as a parent.<br>
+The algorithm generates a population of random states which are sorted according to fitness. Fitness is a score assigned to each state that helps guide the algorithm to a goal state. In this case ```fitness = non-attacking queens```. Those with higher fitness are towards the start of the list. Using ```min(RANDOM.nextInt(POPULATION_SIZE), RANDOM.nextInt(POPULATION_SIZE))``` guarantees that there is a negative sloping distribution meaning those elements at the start of the list, who have better fitness, have a better chance of being chosen as a parent.<br>
 ```
 Crossover position: 6
            0  1  2  3  4  5  6  7
@@ -58,4 +64,4 @@ For an nxn instance there are ```(n*n)^n``` total possible states. Genetic Algor
 
 8 Queens State Space Example
 ---
-An 8x8 instance has 64^8 = 281,474,976,710,656 total states but this can be reduced to C(64,8) or 4,426,165,368 states. If a queen per column restriction is implmented it now has a total of 8^8 = 16,777,216 states. That's an elimination of 4,409,388,152 states. For any nxn instance there is no formula to preemptively calculate how many solutions there will be without searching the entire state space. For an 8x8 instance there are 92 total (not unique) solutions. Restricting the state space guarantees that the solution will be found more quickly.
+An 8x8 instance has 64^8 = 281,474,976,710,656 total states but this can be reduced to C(64,8) or 4,426,165,368 states. If a queen per column restriction is implmented it now has a total of 8^8 = 16,777,216 states. That's an elimination of 4,409,388,152 states. For any nxn instance there is no formula to preemptively calculate how many solutions there will be without searching the entire state space. For an 8x8 instance there are 92 total (not unique) solutions. Restricting the state space guarantees that the solution will be found quickly.
