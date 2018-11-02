@@ -15,7 +15,7 @@ Usage
 ---
 Place all packages in a directory then ```cd``` into the directory and run:<br> 
 ```javac main/*.java localsearch/*.java nqueen/*.java``` then ```java main.Main```<br>
-The size for each algorithm can be found in its respective file (```NQueenGenetic.java``` & ```NQueenShotgun.java```) under ```SIZE```.
+The size for each algorithm can be found in its respective file (```NQueenGenetic.java``` & ```NQueenShotgun.java```) under ```SIZE```.<br>To stop the program from finding solutions for the entire state space, comment out the methods ```generateShotgunSolutions()``` & ```generateGeneticSolutions()``` in the ```main()```.
 
 Shotgun Hill Climbing
 ---
