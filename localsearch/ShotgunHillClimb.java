@@ -8,15 +8,10 @@ import java.util.List;
 
 public class ShotgunHillClimb {
 
-    private NQueenShotgun instance;
-    private List<NQueenShotgun> nextStates;
-    private static final int RESTART_LIMIT = 1000;
-
-    public ShotgunHillClimb(NQueenShotgun instance) {
-        this.instance = instance;
-    }
+    private static final int RESTART_LIMIT = 1000;          // For large SIZE
 
     public NQueenShotgun search() {
+        NQueenShotgun instance = new NQueenShotgun();
         NQueenShotgun best = instance;
         NQueenShotgun current = instance;
         int limit = 0;
@@ -35,7 +30,7 @@ public class ShotgunHillClimb {
     }
 
     private List<NQueenShotgun> exploreStateSpace(int[] state) {
-        nextStates = new ArrayList<>();
+        List<NQueenShotgun> nextStates = new ArrayList<>();
         for (int i = 0; i < state.length; i++) {
             for (int j = 0; j < state.length; j++) {
                 if (state[i] == j)
