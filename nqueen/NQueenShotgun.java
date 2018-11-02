@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class NQueenShotgun extends NQueen {
 
-    private static final int SIZE = 8;
+    public static final int SIZE = 8;
+    public static final int goalScore = goalScore();
     private static final Random RANDOM = new Random(SIZE);
 
     public NQueenShotgun() {
@@ -24,6 +25,11 @@ public class NQueenShotgun extends NQueen {
 
     int genScore() {
         return super.genAttackScore();
+    }
+
+    private static int goalScore() {
+        int goal = 0;
+        return goal;
     }
 
     @Override

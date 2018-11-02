@@ -1,13 +1,11 @@
 package nqueen;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Random;
 
-public class NQueenGenetic extends NQueen implements Comparator<NQueenGenetic> {
+public class NQueenGenetic extends NQueen {
 
-    private static final int SIZE = 8;
-    private static final int goalScore = goalScore();
+    public static final int SIZE = 8;
+    public static final int goalScore = goalScore();
     private static final Random RANDOM = new Random(SIZE);
 
     public NQueenGenetic() {
@@ -29,11 +27,11 @@ public class NQueenGenetic extends NQueen implements Comparator<NQueenGenetic> {
         return goalScore - super.genAttackScore();
     }
 
-    public static int goalScore() {
-        int score = 0;
+    private static int goalScore() {
+        int goal = 0;
         for (int i = 0; i < SIZE; i++)
-            score += i;
-        return score;
+            goal += i;
+        return goal;
     }
 
     @Override
@@ -42,24 +40,4 @@ public class NQueenGenetic extends NQueen implements Comparator<NQueenGenetic> {
         return (score < o.score) ? 1 : (score > o.score) ? -1 : 0;
     }
 
-    @Override
-    public int compare(NQueenGenetic o1, NQueenGenetic o2) {
-        for (int i = 0; i < SIZE; i++) {
-            if (o1.score >= o2.score && o1.getState()[i] < o2.getState()[i])
-                return -1;
-            else if (o1.score <= o2.score && o1.getState()[i] > o2.getState()[i])
-                return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this)
-            return true;
-        if (!(obj instanceof NQueen))
-            return false;
-        NQueen nQueen = (NQueen) obj;
-        return nQueen.score == score && Arrays.equals(nQueen.state,state);
-    }
 }
