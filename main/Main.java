@@ -17,8 +17,8 @@ public class Main {
         NQueenGenetic gSol = g.search();
         System.out.println("\tGenetic Algorithm: "+gSol+"\n");
 
-//        generateShotgunSolutions();
-//        generateGeneticSolutions();
+        generateShotgunSolutions();
+        generateGeneticSolutions();
     }
 
     private static void generateShotgunSolutions() {
