@@ -4,7 +4,7 @@ Place n non-attacking queens on an nxn chessboard
 
 Overview (Local Search)
 ---
-Local search demonstrates that modifying states can be more practical than using an initial state to search for solutions. Local search is used when the path to the solution isn't important. Local search can find solutions in large or infinite state spaces that are continuous. A local search algorithm is complete if it always finds a goal if one exists.
+Local search demonstrates that modifying multiple states can be more practical than using a single initial state to search for solutions. Local search is used when the path to the solution isn't important. It can find solutions in large or infinite state spaces that are continuous. A local search algorithm is considered complete if it always finds a goal if one exists.
 
 Implementation
 ---
