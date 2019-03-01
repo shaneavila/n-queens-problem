@@ -1,4 +1,4 @@
-# NQueens Puzzle
+# N Queens Puzzle
 
 Place n non-attacking queens on an nxn chessboard
 
