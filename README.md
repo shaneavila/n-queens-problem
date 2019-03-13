@@ -1,12 +1,12 @@
 # N Queens Puzzle
 
-Place n non-attacking queens on an nxn chessboard
+Place N non-attacking queens on an NxN chessboard
 
-Overview (Local Search)
+Overview (Uninformed Search)
 ---
 Local search demonstrates that modifying multiple states can be more practical than using a single initial state to search for solutions. Local search is used when the path to the solution isn't important. It can find solutions in large or infinite search spaces that are continuous. A local search algorithm is considered complete if it always finds a goal if one exists.
 
-Implementation
+Local Search Implementation
 ---
 - [Shotgun Hill Climbing](https://en.wikipedia.org/wiki/Hill_climbing#Variants "Random-Restart Hill Climbing")
 - [Genetic Algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm "Genetic Algorithm")
@@ -42,7 +42,7 @@ For example, for the state ```57401163``` the follwing search space will be sear
 This will result in the best state of ```[5,7,4,0,3,1,6,3]Score:3``` which will then have its search space searched. This process will continue until a solution is found. If at any point the search space does not return a better instance than the current best, a restart will occur swapping out the current instance for a new instance. The restart is the key to preventing the instance from hanging on local minima/maxima.
 
 ### Search Space
-For an nxn instance there are ```(n*n)^n``` total possible states when using a brute force algorithm. Restricting the search space by limiting one queen per column will result in a new size of ```n^n``` total states for the same nxn instance. 
+For an NxN instance there are ```(n*n)^n``` total possible states when using a brute force algorithm. Restricting the search space by limiting one queen per column will result in a new size of ```n^n``` total states for the same nxn instance. 
 
 Genetic Algorithm
 ---
@@ -64,4 +64,4 @@ For an nxn instance there are ```(n*n)^n``` total possible states. Genetic Algor
 
 8 Queens Search Space Example
 ---
-An 8x8 instance has 64^8 = 281,474,976,710,656 total states but this can be reduced to C(64,8) or 4,426,165,368 states. If a queen per column restriction is implmented it now has a total of 8^8 = 16,777,216 states. That's an elimination of 4,409,388,152 states. For any nxn instance there is no formula to preemptively calculate how many solutions there will be without searching the entire search space. For an 8x8 instance there are 92 total (not unique) solutions. Restricting the search space guarantees that the solution will be found quickly.
+An 8x8 instance has 64^8 = 281,474,976,710,656 total states but this can be reduced to C(64,8) or 4,426,165,368 states. If a queen per column restriction is implmented it now has a total of 8^8 = 16,777,216 states. That's an elimination of 4,409,388,152 states. For any NxN instance there is no formula to preemptively calculate how many solutions there will be without searching the entire search space. For an 8x8 instance there are 92 total (not unique) solutions. Restricting the search space guarantees that the solution will be found quickly.
